@@ -1,2 +1,2 @@
-console.log("감사합니다");
+console.log("감sdafasdfsdfadf니다");
 console.log("^^");
