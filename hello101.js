@@ -1,2 +1,2 @@
 console.log("안sdfasdfsdf요");
-console.log("기이이이이이이이이이이이이이이임상근 ");
+console.log("동해물과 백두산이 마르고닳도록 ");
