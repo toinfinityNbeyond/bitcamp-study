@@ -11,9 +11,9 @@ public class Exam0230 {
     System.out.println(2147483647); // 4바이트 양의 정수 최대값
     System.out.println(-2147483648); // 4바이트 음의 정수 최소값
     
-    //4바이트 메모리 크기를 초과하면 컴파일 오류가 발생한다.
-    //System.out.println(2147483648);
-    //System.out.println(-2147483649);
+    // 4바이트 메모리 크기를 초과하면 컴파일 오류가 발생한다.
+    // System.out.println(2147483648);
+    // System.out.println(-2147483649);
     
     //## 8바이트 정수
     //4바이트 메모리를 벗어나는 정수 값을 표현할 때 사용한다.
