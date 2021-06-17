@@ -8,7 +8,7 @@ public class Exam0130 {
     // if 문의 조건은 반드시 boolean 데이터여야 한다.
     if (true) System.out.println("1111");
     if (false) System.out.println("2222");
-    if (10 < 8 + 5) System.out.println("3333");
+    if (10 < 4 + 5) System.out.println("3333");
 
     // 그 외의 모든 데이터 타입은 컴파일 오류이다.
     //if (1) System.out.println("4444"); // 컴파일 오류!

@@ -16,7 +16,7 @@ public class Exam0232 {
     //      case 1:
     //      case 2:
     //      default:
-    //    }
+    //            }
 
     // 컴파일 오류
     // - 부동소수점은 사용할 수 없다.

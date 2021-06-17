@@ -17,8 +17,8 @@ public class Exam0460 {
     list.add(true);
     list.add(365);
 
-    for (int i = 0; i < list.size(); i++)
-      System.out.println(list.get(i));
+    for (int i = 0; i < list.size(); i++) //array안에 몇개의 배열이 있는지 size()를 사용하면 알 수 있다.
+      System.out.println(list.get(i)); // 값을 꺼낼 때는 get(index)을 사용한다.
   }
 }
 
