@@ -26,6 +26,6 @@ public class Exam0162 {
     else
       System.out.println("노인입니다.");
 
-    keyScan.close();
+//    keyScan.close();
   }
 }
