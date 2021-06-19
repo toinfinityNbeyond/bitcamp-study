@@ -11,7 +11,7 @@ public class Exam0413 {
     int i = 1;
     for (;;) {
       if (i > 5)
-        break;
+        break; // break 가 없으면 무한반복문이 된다.
       System.out.println(i);
       i++;
     }

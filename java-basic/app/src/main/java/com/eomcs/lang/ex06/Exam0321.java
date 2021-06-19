@@ -25,7 +25,7 @@ public class Exam0321 {
     // => continue 사용 후
     count = 0;
     sum = 0;
-    while (count < 100) {
+    while (count < 10) {
       count++;
       if (count % 2 == 1) // 홀수는 continue를 만나서 다시 처음 조건문으로 돌아간다.
         continue; // 다음 문장을 실행하지 않고 즉시 조건 검사로 이동한다.
