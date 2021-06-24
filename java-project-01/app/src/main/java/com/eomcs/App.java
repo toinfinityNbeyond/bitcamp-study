@@ -1,6 +1,5 @@
 package com.eomcs;
 
-import java.util.Date;
 import java.util.Scanner;
 
 
@@ -22,164 +21,70 @@ import java.util.Scanner;
 //16. 클래스를 이용하여 새 데이터타입을 정의하기
 //17. 클래스를 이용하여 메서드를 분류하기
 //18. 데이터 목록을 다루는 코드를 재사용하기 쉽게 별도의 클래스로 분리한다.
+//19. 메뉴 선택 기능을 추가
+//20. 리팩토링: 메서드 추출 => 게시글 관리 메뉴 처리 코드를 별도의 메서드로 분리한다.
+//21. 리팩토링:
+//        -메서드 이동 => 게시글을 다루는 일은 BoardHandler에게 맡긴다.
+//        -클래스 이동 => Board 클래스를 사용하는 BoardHandler로 옮긴다.
+//22. 메뉴 추가하기 
+//      - 회원 관리 기능을 추가하기(미완성)
+//      - 계산기 기능을 추가하기(완성)
+//23. 메뉴를 실행하는 핸들러의 사용 규칙을 통일하기 : 인터페이스 문법의 용도
+//      - 규칙 정의 : Handler
+//      - 규칙을 이행(implement) : BoardHandler , MemberHandler, ComputeHandler
+//24. 회원 관리 기능 완성하기
+//      - 회원 정보를 담을 데이터 타입을 새로 설계한다. :=> Member
+//      - 회원 등록, 목록 조회. 상세 조회, 변경, 삭제 기능을 구현다.
+//      - 게시글과 회원 데이터를 함께 보관할 때 문제점 확인하기
+//25. 회원 데이터를 별도의 목록으로 관리하기(단순한 방법 = 유지보수가 어렵다)
+//      - 기존의 ArrayList 클래스를 복사하여 ArrayList2로 만들어 사용한다.
 public class App {
-
-  // 한 개의 게시글을 담을 복합 데이터의 변수를 설계
-  static class Board {
-    String title;
-    String content;
-    String password;
-    int viewCount;
-    Date createdDate;
-  }
 
   static Scanner keyScan = new  Scanner(System.in); 
 
-
   public static void main(String[] args) {
-    // App 클래스에서 만든 Scanner 인스턴스를 BoardHandler 같이 쓴다.
+
+    // App 클래스에서 만든 Scanner 인스턴스를 BoardHandler와 MemberHandler가 같이 쓴다.
     BoardHandler.keyScan = keyScan; 
+    MemberHandler.keyScan = keyScan; 
+    ComputeHandler.keyScan = keyScan; 
 
-    System.out.println("[게시판 관리]");
+    // 규칙에 따라 만든 클래시에 대해
+    // 규칙에서 정의한 메서드를 호출하려면
+    // 먼저 그 클래스의 인스턴스를 생성한 후
+    // 그 인스턴스를 이용하여 메서드를 호출해야 한다.
 
+    BoardHandler boardHandler  = new BoardHandler();
+    MemberHandler memberHandler = new MemberHandler();
+    ComputeHandler computeHandler  = new ComputeHandler();
 
-    loop: while (true) {
-      System.out.print("명령> ");
-      String command = keyScan.nextLine();
+    menuLoop:  while (true) {
+      System.out.println("[메뉴]");
+      System.out.println("  1: 게시글 관리");
+      System.out.println("  2: 회원 관리");
+      System.out.println("  3: 계산기");
+      System.out.print("메뉴를 선택하시오. (종료: quit) [1..3]");
+      String menuNo = keyScan.nextLine();
 
-      switch (command) {
-        case "list": BoardHandler.list(); break;
-        case "add": BoardHandler.add(); break;
-        case "update": BoardHandler.update(); break;
-        case "delete": BoardHandler.delete(); break;
-        case "view": BoardHandler.view(); break;
+      switch (menuNo) {
+        case "1":
+          boardHandler .execute();
+          break;
+        case "2":
+          memberHandler .execute();
+          break;
+        case "3":
+          computeHandler.execute();
+          break;
         case "quit":
-          break loop;
+          break menuLoop; 
         default:
-          System.out.println("지원하지 않는 명령입니다.");
+          System.out.println("메뉴 번호가 옳지 않습니다.");
       }
+      System.out.println();
     }
-    keyScan.close();
 
+    keyScan.close();
     System.out.println("안녕히 가세요!"); 
   }
-
-  //  static void list() {
-  //    System.out.println("[게시글 목록]");
-  //
-  //    for (int i = 0; i < size; i++) {
-  //      Board board = boards[i];
-  //      System.out.println("%d, %s, %s, %d%n",
-  //          i,
-  //          board.title,
-  //          String.format("%1$tY-%1$tm-%1$td", board.createdDate),
-  //          board.viewCount);
-  //    }
-  //  }
-  //
-  //  static void add() {
-  //    System.out.println("[게시글 등록]");
-  //
-  //    if (size == BOARD_LENGTH) {
-  //      System.out.println("더이상 게시글을 추가할 수 없습니다.");
-  //      return;
-  //    }
-  //
-  //    Board board = new Board();
-  //
-  //    System.out.print("제목: ");
-  //    board.title = keyScan.nextLine();
-  //
-  //    System.out.print("내용: ");
-  //    board.content = keyScan.nextLine();
-  //
-  //    System.out.print("비밀번호: ");
-  //    board.password = keyScan.nextLine();
-  //
-  //    board.createdDate = new Date(); //  new Date도 class
-  //
-  //    boards[size++] = board;
-  //
-  //
-  //    System.out.println("게시글을 등록했습니다.");
-  //  }
-  //
-  //  static void update() {
-  //    System.out.println("[게시글 변경]");
-  //
-  //    System.out.println("번호? ");
-  //    int index = Integer.parseInt(keyScan.nextLine());
-  //
-  //    if (index < 0 || index >= size) {
-  //      System.out.println("무효한 게시글 번호입니다.");
-  //      return;
-  //    }
-  //
-  //    Board board = boards[index];
-  //
-  //    System.out.printf("제목(%s)? ", board.title);
-  //    String title = keyScan.nextLine();
-  //
-  //    System.out.printf("내용(%s)? ", board.content);
-  //    String content = keyScan.nextLine();
-  //
-  //    System.out.print("정말 변경하시겠습니까?(y/N) ");
-  //    if (!keyScan.nextLine().equals("y")) {
-  //      System.out.println("게시글 변경을 최소하였습니다.");
-  //      return;
-  //    } 
-  //
-  //    board.title = title;
-  //    board.content = content;
-  //
-  //    System.out.println("게시글을 변경하였습니다.");
-  //  }
-  //
-  //  static void delete() {
-  //    System.out.println("[게시글 삭제]");
-  //
-  //    System.out.print("번호? ");
-  //    int index = Integer.parseInt(keyScan.nextLine());
-  //
-  //    if (index < 0 || index >= size) {
-  //      System.out.println("무효한 게시글 번호입니다.");
-  //      return;
-  //    }
-  //
-  //    System.out.print("정말 삭제하시겠습니까?(y/N) ");
-  //    if (!keyScan.nextLine().equals("y")) {
-  //      System.out.println("게시글 삭제를 최소하였습니다.");
-  //      return;
-  //    } 
-  //
-  //    for (int i = index; i < size - 1; i++) {
-  //      boards[i] = boards[i + 1];
-  //    }
-  //
-  //    size--;
-  //
-  //    System.out.println("게시글을 삭제하였습니다.");
-  //  }
-  //
-  //  static void view() {
-  //    System.out.println("[게시글 조회]");
-  //
-  //    System.out.print("번호? ");
-  //    int index = Integer.parseInt(keyScan.nextLine());
-  //
-  //    if (index < 0 || index >= size) {
-  //      System.out.println("무효한 게시글 번호입니다.");
-  //      return;
-  //    }
-  //
-  //    Board board = boards[index];
-  //
-  //    board.viewCount++;
-  //
-  //    System.out.printf("제목: %s\n", board.title);
-  //    System.out.printf("내용: %s\n", board.content);
-  //    System.out.printf("조회수: %d\n", board.viewCount);
-  //    System.out.printf("등록일: %1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS\n", board.createdDate);
-  //  }
 }
-
