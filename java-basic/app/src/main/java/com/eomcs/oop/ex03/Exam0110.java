@@ -3,17 +3,20 @@
 package com.eomcs.oop.ex03;
 
 public class Exam0110 {
+  static class A {
+    // 인스턴스 변수
+    // => new 명령을 통해 생성된다.
+    // => new 명령을 실행하기 전까지는 인스턴스 변수는 존재하지 않는다.
+    // => Heap 영역에 생성된다.
+    // => static이 붙지 않는다.
+    // Exam0110 A에 메인을 실행할 때만 사용됨(중첩 클래스)
+    //한 번 컴파일 된 클래스는 메인에서 없어짐. 
+    static int v1; // 4바이트 int 값을 저장할 메모리를 만들라는 명령!
+    static boolean v2; // true/false 논리값을 저장할 메모리를 만들라는 명령!
+    // 이 명령은 new 명령을 실행할 때 비로서 실행된다.
+  }
+
   public static void main(String[] args) {
-    class A {
-      // 인스턴스 변수
-      // => new 명령을 통해 생성된다.
-      // => new 명령을 실행하기 전까지는 인스턴스 변수는 존재하지 않는다.
-      // => Heap 영역에 생성된다.
-      // => static이 붙지 않는다.
-      int v1; // 4바이트 int 값을 저장할 메모리를 만들라는 명령!
-      boolean v2; // true/false 논리값을 저장할 메모리를 만들라는 명령!
-      // 이 명령은 new 명령을 실행할 때 비로서 실행된다.
-    }
 
     // A 클래스에 대해 new 명령을 사용하기 전에는 v1, v2 메모리는 존재하지 않는다.
     // 단지 설계도일 뿐이다.
@@ -28,7 +31,8 @@ public class Exam0110 {
     // 인스턴스 변수는 레퍼런스를 통해 사용할 수 있다.
     obj1.v1 = 100;
     obj2.v1 = 200;
-    obj3.v1 = 300;
+    obj3.v1 = 300; //obj3의 객체1(줄임말) 
+    //obj3 라는 레퍼런스에 찾아가서 v1의 인스턴스
 
     System.out.printf("%d, %d, %d\n", obj1.v1, obj2.v1, obj3.v1);
   }

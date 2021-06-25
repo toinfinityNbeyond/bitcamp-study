@@ -13,11 +13,26 @@ public class MemberHandler implements Handler {
     Date registeredDate;
   }
 
-  static Scanner keyScan;
+  String memberGroupName;
+  Scanner keyScan;
+  ArrayList memberList = new ArrayList();
+
+  MemberHandler(Scanner keyScan) {
+    this.keyScan = keyScan;
+    this.memberGroupName = "일반";
+  }
+
+  MemberHandler(String memberGroupName, Scanner keyScan) {
+    this.memberGroupName = memberGroupName;
+    this.keyScan = keyScan;
+  }
+
 
   public void execute() {
     loop: while (true) {
-      System.out.print("회원 관리> ");
+      // 인스턴스 메서드에서 인스턴스 변수를 사용할 때
+      // this를 생략할 수 있다.
+      System.out.print(/*this.*/memberGroupName +"/회원 관리> ");
       String command = keyScan.nextLine();
 
       switch (command) {
@@ -34,10 +49,10 @@ public class MemberHandler implements Handler {
       System.out.println();
     }
   }
-  static void add() {
+  void add() {
     System.out.println("[회원 등록]");
 
-    if (ArrayList2.size == ArrayList2.MAX_LENGTH) {
+    if (memberList.size == ArrayList.MAX_LENGTH) {
       System.out.println("더이상 회원을 추가할 수 없습니다.");
       return;
     }
@@ -63,15 +78,15 @@ public class MemberHandler implements Handler {
     member.registeredDate = new Date(); // 현재의 날짜와 시간을 생성하여 배열에 저장한다.
     // 배열에 게시글 정보가 담긴 객체(식판)을 넣는다.
 
-    ArrayList2.append(member);
+    memberList.append(member);
 
     System.out.println("회원을 등록했습니다.");
   }
 
-  static void list() {
+  void list() {
     System.out.println("[회원 목록]");
 
-    Object[] arr = ArrayList2.toArray();
+    Object[] arr = memberList.toArray();
 
     for (int i = 0 ; i < arr.length; i++) {
       Member member = (Member) arr[i];
@@ -84,18 +99,18 @@ public class MemberHandler implements Handler {
 
   }
 
-  static void view() {
+  void view() {
     System.out.println("[회원 조회]");
 
     System.out.print("번호? ");
     int index = Integer.parseInt(keyScan.nextLine());
 
-    if (index < 0 || index >=ArrayList2.size) {
+    if (index < 0 || index >=memberList.size) {
       System.out.println("무효한 회원 번호입니다.");
       return;
     }
 
-    Member member =(Member) ArrayList2.retrieve(index);
+    Member member =(Member) memberList.retrieve(index); //멤버리스트 배열에 있는 인덱스의 값을 꺼내라.
 
 
     System.out.printf("이름: %s\n", member.name);
@@ -103,18 +118,18 @@ public class MemberHandler implements Handler {
     System.out.printf("등록일: %1$tY-%1$tm-%1$td\n", member.registeredDate);
     System.out.printf("재직중: %s\n", member.working ? "예" : "아니오");
   }
-  static void update() {
+  void update() {
     System.out.println("[회원 변경]");
 
     System.out.print("번호? ");
     int index = Integer.parseInt(keyScan.nextLine());
 
-    if (index < 0 || index >= ArrayList2.size) {
+    if (index < 0 || index >= memberList.size) {
       System.out.println("무효한 회원 번호입니다.");
       return;
     }
 
-    Member member = (Member) ArrayList2.retrieve(index);
+    Member member = (Member) memberList.retrieve(index);
 
     System.out.printf("이름(%s)? ",member.name);
     String name = keyScan.nextLine();
@@ -145,24 +160,25 @@ public class MemberHandler implements Handler {
 
     System.out.println("회원을 변경하였습니다.");
   }
-  static void delete() {
+  void delete() {
     System.out.println("[회원 삭제]");
 
     System.out.print("번호? ");
     int index = Integer.parseInt(keyScan.nextLine());
 
-    if (index < 0 || index >=ArrayList2.size) {
+    if (index < 0 || index >=memberList.size) {
       System.out.println("무효한 회원 번호입니다.");
       return;
     }
 
     System.out.print("정말 삭제하시겠습니까?(y/N) ");
     if (!keyScan.nextLine().equals("y")) {
-      System.out.println("게시글 삭제를 최소하였습니다.");
+      System.out.println("회원 삭제를 최소하였습니다.");
       return;
     } 
 
-    ArrayList2.remove(index);
+
+    memberList.remove(index); // 멤버리스트 배열의 인덱스에 해당하는 값을 지워라.
 
     System.out.println("게시글을 삭제하였습니다.");
   }

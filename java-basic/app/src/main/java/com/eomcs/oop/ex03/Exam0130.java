@@ -15,7 +15,7 @@ public class Exam0130 {
     // - 클래스와 함께 "Method Area" 영역에 존재한다.
     // - 문법
     // static 데이터타입 변수명;
-    //
+
     static int v1;
     static boolean v2;
   }
