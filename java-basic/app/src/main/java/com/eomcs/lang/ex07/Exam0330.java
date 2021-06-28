@@ -29,6 +29,7 @@ public class Exam0330 {
 
     // a, b 변수가 들어 있는 인스턴스(객체=메모리)의 주소를 
     // swap()에 넘긴다. => 그래서 "call by reference"인 것이다.
+    // 주소를 넘겨줘서 원본에 영향은 준다.
     swap(ref);
     System.out.printf("main(): a=%d, b=%d\n", ref.a, ref.b);
   }
