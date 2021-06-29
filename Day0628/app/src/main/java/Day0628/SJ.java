@@ -19,7 +19,7 @@ public class SJ { // make 공급처
 
     switch ((int)value/10) {
       case 10:  
-      case 9:   grade = 'A'; break;
+      case 9: grade = 'A'; break;
       case 8: grade = 'B'; break;
       case 7: grade = 'C'; break;
       case 6: grade = 'D'; break;
@@ -58,4 +58,6 @@ public class SJ { // make 공급처
 // 리턴 값, 타입, 메서드 이름 고민해보기 
 // 평균 70점부터 축합격
 // 0~69 재시험
+// class Board{}
+// class BoardUser{ 메인메서드}
 
