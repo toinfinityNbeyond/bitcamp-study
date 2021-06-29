@@ -13,7 +13,7 @@ public class SJUser { // Use 소비자
 
     System.out.println("합계="+ total);
     System.out.println("합계="+ avg);
-    //        boolean pass = sj.getPass(pass);
-    //        String score = sj.getScore(score);
+    //    boolean pass = sj.getPass(pass);
+    //    String score = sj.getScore(score);
   }
 }// class END
