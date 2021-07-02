@@ -2,7 +2,7 @@ package Day0628;
 
 import java.util.Scanner;
 
-public class Work05Hotel {
+public class Work05HotelTest {
 
   // 생성자 클래스이름, 리턴값X , void 기술 X
   // 생성자 사용은 new키워드 다음에 기술 ob = new 클래스()
@@ -18,9 +18,9 @@ public class Work05Hotel {
 
 
 
-  public Work05Hotel() { }
-  public Work05Hotel(String name) { }
-  public Work05Hotel(String name, int year) { }
+  public Work05HotelTest() { }
+  public Work05HotelTest(String name) { }
+  public Work05HotelTest(String name, int year) { }
 
 
   public void process() {
@@ -34,46 +34,33 @@ public class Work05Hotel {
         System.exit(1);
       } 
 
-
       switch (sel) {
         case 1: checkIn(); break;
-        case 2: checkOut();break;
-        case 3: map();break;
-        case 4: list();break;
-        default:System.out.println("잘못된 명령입니다."); break;
-
+        case 2: checkOut(); break;
+        case 3: map(); break;
+        case 4: list(); break;
+        default: break;
       }// switch end
     }//while end
   }// end
 
   public void checkIn () {
-    String[][] name = null;
-    String[][] arr = new String [3][5];
-    System.out.println("몇층에 투숙?");
+    System.out.println("몇층에 투숙? [1..3]");
     floor = Integer.parseInt(sc.nextLine());
-    System.out.println("몇호에 투숙?");
+    System.out.println("몇호에 투숙? [1..15]");
     room = Integer.parseInt(sc.nextLine());
     System.out.println("투숙객 이름?");
     title = sc.nextLine();
-
-    //입력 받은 값을 배열에 넣기
-    //    String [][] arr = { {(Sting)floor} ,{(Sting)room} };
-
+    System.out.println("입실 확인되었습니다.");
   }// end
 
   public void checkOut() {
-    System.out.println("퇴실 하시겠습니까?");
-    System.out.print("퇴실하실 방번호를 입력해주세요 [1...15]");
-
-    if(Integer.parseInt(sc.nextLine()) < 15) {
+    System.out.println("퇴실 하실 방번호를 입력해주세요.");
+    if (Integer.parseInt(sc.nextLine()) <= 15) {
       System.out.println("퇴실 되었습니다.");
-    } else {
-      System.out.println("잘못된 방번호 입니다.");
+    } else { System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
     }
 
-
-
-    // room = Integer.parseInt(sc.nextLine());
 
 
   }// end
@@ -86,11 +73,17 @@ public class Work05Hotel {
     for(int i = 0; i < 3; i++) {
       for(int b = 0; b < 5; b++) {
         System.out.print((i+1) + "0" + (b+1) + "호 ");
+        //if (name[i][b]==null) {
+        //System.out.print("□\t");
+        //} else {
+        //System.out.print("■\t");
+        //}
       }
       System.out.println();
 
       for(int j = 0; j < 5; j++) {
         if(this.name[i][j] == null) {
+          if(this.name[i][j] == null) {}
           System.out.print("\t");
           continue;
         }// if end
@@ -103,22 +96,12 @@ public class Work05Hotel {
 
 
   public void list() {  // 영림쌤 구현해서 보여드리겠습니다.
-    System.out.println("\n\t [ list ]");
-    for(int i = 0; i < 3; i++) {
-      for(int j = 0; j < 5; j++) {
-        if (name[i][j] == null) {
-          System.out.print(" " + (i+1)+ "0" + (j+1) + "호" + "□\t" + "\t");
-        }else {
-          System.out.print("" + (i+1)+ "0" + (j+1) + "호" + "■\t" + name[i][j]  + "\t");
-        }
-      }// j end
-      System.out.println();
-    }//for i end
+
   }// end
 
 
   public static void main(String[] args) {
-    Work05Hotel wh = new Work05Hotel();
+    Work05HotelTest wh = new Work05HotelTest();
     wh.process();
 
   } // end

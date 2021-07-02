@@ -31,10 +31,14 @@ public class Memo extends Frame implements WindowListener, ActionListener {
 
 
     // 이벤트 연결 리스너추가
-    this.addWindowListener(this); // 앞this 뒤this
-    tf.addActionListener(this);
-    btnSend.addActionListener(this);
-    btnExit.addActionListener(this);
+    // WindowListener wl = new WindowListener();
+    // addWindowListener(wl); // 앞this 뒤this
+    addWindowListener(this);
+
+
+    this.tf.addActionListener(this);
+    this.btnSend.addActionListener(this);
+    this.btnExit.addActionListener(this);
 
 
     // 프레임의 메서드 값 변경
@@ -81,10 +85,17 @@ public class Memo extends Frame implements WindowListener, ActionListener {
     System.exit(1);
   }//end 
 
+  public void bittCamp() {
+    //    AAA ac = new AAA(); 
+    //    WindowListener wl = new WindowListener();
+  }
 
   public static void main (String[] args) {
     Memo pad = new Memo();  //   new Memo(); // 이렇게도 사용가능.
+    // AAA aa = null; // 선언만
+    // AAA ac = new AAA(); 에러발생
     //    pad.windowClosing(null); // 에러는 아니지만 
+    //WindowListener wl = new WindowListener();
   }// end
 
 }// class END
