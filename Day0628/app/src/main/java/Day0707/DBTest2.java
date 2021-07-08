@@ -46,7 +46,10 @@ public class DBTest2 {
         String utitle = RS.getString("title");
         int ucnt = RS.getInt("cnt");
         System.out.println(ucode +"\t" + uname+"\t" + utitle+"\t" + udt+"\t" + ucnt);
-      }
+      } // while end 
+
+      // System.out.println();
+      // System.out.println()
     }catch(Exception ex) { System.out.println("에러이유 " + ex);}  
     sc.close();
   }//main end
